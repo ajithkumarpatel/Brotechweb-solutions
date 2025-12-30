@@ -1,7 +1,7 @@
 
 
 import { useState, useEffect } from 'react';
-import { collection, doc, onSnapshot, addDoc, serverTimestamp, getDocs, query, where } from 'firebase/firestore';
+import { collection, doc, onSnapshot, addDoc, serverTimestamp, getDocs, query, where, deleteDoc } from 'firebase/firestore';
 import { db } from './firebase';
 import { Service, PricingTier, Testimonial, BlogPost, SiteContent, Career, Project, FAQ, TeamMember, CaseStudy, EstimatorItem, MeetingRequest, Stat, Announcement, GlossaryTerm, ActiveProject, Resource, Event, Industry, BrandAsset, StartupPackage, StartupFAQ, WhiteLabelStep, DesignSystemColor, PartnerApplication, LocationData, TestimonialSubmission, NewsletterIssue, Invoice, ClientDocument } from '../types';
 
@@ -22,7 +22,7 @@ const DEFAULT_SITE_CONTENT: SiteContent = {
 };
 
 // Generic hook to fetch a collection real-time
-function useCollection<T>(collectionName: string) {
+export function useCollection<T>(collectionName: string) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -285,6 +285,16 @@ export const getProjectStatus = async (projectId: string) => {
   } catch (error: any) {
     console.error("Error fetching project status", error);
     return { success: false, error: error.message || "Unknown error" };
+  }
+};
+
+export const deleteDocument = async (collectionName: string, id: string) => {
+  try {
+    await deleteDoc(doc(db, collectionName, id));
+    return { success: true };
+  } catch (error) {
+    console.error("Error deleting doc", error);
+    return { success: false, error };
   }
 };
 

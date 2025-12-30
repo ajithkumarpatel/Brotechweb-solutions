@@ -51,6 +51,7 @@ import SubmitReviewPage from './pages/SubmitReviewPage';
 import NewsletterArchivePage from './pages/NewsletterArchivePage';
 import InvoicesPage from './pages/InvoicesPage';
 import DocumentsPage from './pages/DocumentsPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
 
 function App() {
   return (
@@ -107,6 +108,9 @@ function App() {
             <Route path="/tools/timeline" element={<TimelineGeneratorPage />} />
             <Route path="/reviews/submit" element={<SubmitReviewPage />} />
             <Route path="/newsletter" element={<NewsletterArchivePage />} />
+            
+            {/* Admin Route */}
+            <Route path="/admin" element={<AdminDashboardPage />} />
             
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

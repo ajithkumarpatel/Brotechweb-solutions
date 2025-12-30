@@ -66,12 +66,14 @@ export interface Career {
 }
 
 export interface JobApplication {
+  id?: string;
   jobId: string;
   name: string;
   email: string;
   phone: string;
   resumeUrl: string;
   message: string;
+  submittedAt?: any;
 }
 
 export interface Project {
@@ -125,6 +127,7 @@ export interface MeetingRequest {
   preferredDate: string;
   preferredTime: string;
   status: 'pending' | 'confirmed' | 'cancelled';
+  requestedAt?: any;
 }
 
 export interface Stat {
@@ -203,6 +206,7 @@ export interface BrandAsset {
 }
 
 export interface OnboardingSubmission {
+  id?: string;
   companyName: string;
   contactName: string;
   email: string;
@@ -210,6 +214,7 @@ export interface OnboardingSubmission {
   existingWebsite?: string;
   goals: string;
   driveLink?: string; // Link to their assets
+  submittedAt?: any;
 }
 
 export interface StartupPackage {
@@ -244,12 +249,14 @@ export interface DesignSystemColor {
 }
 
 export interface PartnerApplication {
+  id?: string;
   name: string;
   email: string;
   role: string; // Developer, Designer, etc.
   portfolioUrl: string;
   hourlyRate: string;
   skills: string;
+  submittedAt?: any;
 }
 
 export interface LocationData {
@@ -261,12 +268,14 @@ export interface LocationData {
 }
 
 export interface TestimonialSubmission {
+  id?: string;
   name: string;
   role: string;
   company: string;
   content: string;
   rating: number;
   imageUrl?: string;
+  submittedAt?: any;
 }
 
 export interface NewsletterIssue {
@@ -294,6 +303,21 @@ export interface ClientDocument {
   date: string;
   downloadUrl: string;
   category?: 'Contract' | 'Scope' | 'Report';
+}
+
+export interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  type?: string;
+  createdAt: any; // Firestore Timestamp
+}
+
+export interface Subscriber {
+  id: string;
+  email: string;
+  subscribedAt: any;
 }
 
 export type IconType = Service['icon'];
